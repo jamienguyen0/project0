@@ -40,6 +40,14 @@ public class Main {
                     String mapInput = newEntryInput.nextLine();
                     maps.add(mapInput);
 
+                    // Get mesos earned
+                    System.out.println("Total mesos earned?");
+                    String mesosInput = newEntryInput.nextLine();
+
+                    // Get exp earned
+                    System.out.println("Total exp earned?");
+                    String expInput = newEntryInput.nextLine();
+
                     // Get link to video
                     System.out.println("Rotation video? (OPTIONAL)");
                     String videoInput = newEntryInput.nextLine();
