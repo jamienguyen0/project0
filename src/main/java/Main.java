@@ -41,8 +41,8 @@ public class Main {
                     maps.add(mapInput);
 
                     // Get mesos earned
-                    System.out.println("Total mesos earned?");
-                    String mesosInput = newEntryInput.nextLine();
+                    System.out.println("Total money earned?");
+                    String moneyInput = newEntryInput.nextLine();
 
                     // Get exp earned
                     System.out.println("Total exp earned?");
