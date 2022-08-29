@@ -43,17 +43,19 @@ public class Main {
                     // Get mesos earned
                     System.out.println("Total money earned?");
                     String moneyInput = newEntryInput.nextLine();
+                    int money = Integer.parseInt(moneyInput);   // Convert to int
 
                     // Get exp earned
                     System.out.println("Total exp earned?");
                     String expInput = newEntryInput.nextLine();
+                    int exp = Integer.parseInt(expInput);   // Convert to int
 
                     // Get link to video
                     System.out.println("Rotation video? (OPTIONAL)");
                     String videoInput = newEntryInput.nextLine();
 
                     // Add entry to table
-
+                    Entry newEntry = new Entry(classInput, mapInput, money, exp, videoInput);
 
                     break;
                 case 2: // Select filter
@@ -72,9 +74,12 @@ public class Main {
                                 System.out.format("%d) %s\n", i, classes[i]);
                             }
 
-                            // Get input
+                            // 0-48
+                            Scanner classSelection = new Scanner(System.in);
+                            int currClass = classSelection.nextInt();
+                            classSelection.nextLine();
 
-                            // Display
+                            // Database query to display all Entry's associated with selected class
 
                             break;
                         case 2:
@@ -84,8 +89,11 @@ public class Main {
                             }
 
                             // Get Input
+                            Scanner mapSelection = new Scanner(System.in);
+                            int currMap = mapSelection.nextInt();
+                            mapSelection.nextLine();
 
-                            // Display
+                            // Database query to display all Entry's associated with selected map
 
                             break;
                         default:
