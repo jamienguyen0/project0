@@ -71,7 +71,10 @@ public class Main {
                         case 1:
                             // Display all classes
                             for (int i = 0; i < classes.length; i++) {
-                                System.out.format("%d) %s\n", i, classes[i]);
+                                if (i > 0 && i % 4 == 0) {
+                                    System.out.println();
+                                }
+                                System.out.format("%2d) %-25s ", i+1, classes[i]);
                             }
 
                             // 0-48
