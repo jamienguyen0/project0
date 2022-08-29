@@ -57,6 +57,8 @@ public class Main {
                     // Add entry to table
                     Entry newEntry = new Entry(classInput, mapInput, money, exp, videoInput);
 
+
+                    newEntryInput.close();  // close scanner
                     break;
                 case 2: // Select filter
                     System.out.println("View by\n1) Class\n2) Map");
@@ -74,16 +76,18 @@ public class Main {
                                 if (i > 0 && i % 4 == 0) {
                                     System.out.println();
                                 }
-                                System.out.format("%2d) %-25s ", i+1, classes[i]);
+                                System.out.format("%2d) %-25s ", i, classes[i]);
                             }
 
                             // 0-48
                             Scanner classSelection = new Scanner(System.in);
                             int currClass = classSelection.nextInt();
-                            classSelection.nextLine();
+                            classSelection.nextLine();  // index of class in classes list
 
                             // Database query to display all Entry's associated with selected class
 
+
+                            classSelection.close(); // close scanner
                             break;
                         case 2:
                             // Display current maps in database
@@ -98,12 +102,15 @@ public class Main {
 
                             // Database query to display all Entry's associated with selected map
 
+
+                            mapSelection.close();
                             break;
                         default:
                             System.out.println("Invalid selection");
                             break;
                     }
 
+                    filterInput.close();    // close scanner
                     break;
                 case 3: // Exit
                     System.out.println("Exiting program...");
@@ -113,6 +120,8 @@ public class Main {
                     System.out.println("Invalid selection");
                     break;
             }
+
+            input.close();  // close scanner
         }
     }
 }
