@@ -57,6 +57,10 @@ public class Entry {
 
     @Override
     public String toString() {
-        return "";
+        return "Class: " + this.charClass + "\n" +
+               "Map: " + this.mapName + "\n" +
+               "Money: " + this.money + "\n" +
+               "Exp: " + this.exp + "\n" +
+               "Video: " + this.videoLink + "\n";
     }
 }
