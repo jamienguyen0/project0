@@ -11,12 +11,13 @@ public class Main {
                                   "Luminous", "Fire Poison", "Ice Lightning", "Marksman", "Mechanic", "Mihile", "Mercedes",
                                   "Night Lord", "Night Walker", "Paladin", "Pathfinder", "Phantom", "Shade", "Shadower",
                                   "Thunder Breaker", "Wild Hunter", "Wind Archer", "Xenon", "Zero"};
-        List<String> maps = new ArrayList<String>();
-
+        List<String> maps = new ArrayList<>();
 
         // Command Line Menu
+        // CRUD
         boolean inMenu = true;
         int menuSelection = 0;  // Default value, 0 = nothing selected
+        int entryID = 0;
         while(inMenu) {
             // Menu options
             System.out.println("Choose a menu option");
@@ -33,7 +34,8 @@ public class Main {
 
                     // Get class name
                     System.out.println("Class?");
-                    String classInput = newEntryInput.nextLine();
+                    int classInput = newEntryInput.nextInt();
+                    newEntryInput.nextLine();
 
                     // Get map name and add to list of existing maps
                     System.out.println("Map?");
@@ -55,10 +57,11 @@ public class Main {
                     String videoInput = newEntryInput.nextLine();
 
                     // Add entry to table
-                    Entry newEntry = new Entry(classInput, mapInput, money, exp, videoInput);
+                    Entry newEntry = new Entry(entryID, classInput, mapInput, money, exp, videoInput);
 
 
                     newEntryInput.close();  // close scanner
+                    entryID++;
                     break;
                 case 2: // Select filter
                     System.out.println("View by\n1) Class\n2) Map");
