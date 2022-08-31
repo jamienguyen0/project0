@@ -1,3 +1,5 @@
+import Model.Entry;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -87,7 +89,7 @@ public class MaplestoryRatesRepository {
                             int currClass = classSelection.nextInt();
                             classSelection.nextLine();  // index of class in classes list
 
-                            // Database query to display all Entry's associated with selected class
+                            // Database query to display all Model.Entry's associated with selected class
 
 
                             classSelection.close(); // close scanner
@@ -103,7 +105,7 @@ public class MaplestoryRatesRepository {
                             int currMap = mapSelection.nextInt();
                             mapSelection.nextLine();
 
-                            // Database query to display all Entry's associated with selected map
+                            // Database query to display all Model.Entry's associated with selected map
 
 
                             mapSelection.close();

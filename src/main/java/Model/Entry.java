@@ -1,4 +1,4 @@
-// Represents an entry in the database
+package Model;// Represents an entry in the database
 
 public class Entry {
     private int entryID;
