@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MaplestoryRatesTracker {
+public class MaplestoryRatesRepository {
     public static void main(String[] args) {
         final String[] classes = {"Adele", "Angelic Buster", "Aran", "Ark", "Battle Mage", "Beast Tamer", "Bishop",
                                   "Blaster", "Blaze Wizard", "Bowmaster", "Buccaneer", "Cadena", "Cannonneer", "Corsair",
