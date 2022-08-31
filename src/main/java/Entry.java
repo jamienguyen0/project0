@@ -17,7 +17,6 @@ public class Entry {
         this.videoLink = videoLink;
     }
 
-
     @Override
     public String toString() {
         return  "EntryID: " + this.entryID + "\n" +
