@@ -63,8 +63,27 @@ public class EntryRepository {
         return entries;
     }
 
-    public List<Entry> getAllEntriesByMapID() {
+    public List<Entry> getAllEntriesByMapID(int mapID) {
         List<Entry> entries = new ArrayList<>();
+
+        try {
+            PreparedStatement statement = conn.prepareStatement("Select * from entries where mapID = ?");
+            statement.setInt(1, mapID);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                int entryID = rs.getInt("entryID");
+                int classID = rs.getInt("classID");
+                String mapName = rs.getString("mapName");
+                int moneyEarned = rs.getInt("moneyEarned");
+                int expEarned = rs.getInt("expEarned");
+                String videoURL = rs.getString("videoURL");
+                Entry newEntry = new Entry(entryID, classID, mapName, moneyEarned, expEarned, videoURL);
+                entries.add(newEntry);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return entries;
     }
