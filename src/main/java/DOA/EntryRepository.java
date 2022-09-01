@@ -88,6 +88,28 @@ public class EntryRepository {
         return entries;
     }
 
+    public Entry getEntryByID(int id) {
+        try {
+            PreparedStatement statement = conn.prepareStatement("Select * from entries where entryID = ?");
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                int entryID = rs.getInt("entryID");
+                int classID = rs.getInt("classID");
+                String mapName = rs.getString("mapName");
+                int moneyEarned = rs.getInt("moneyEarned");
+                int expEarned = rs.getInt("expEarned");
+                String videoURL = rs.getString("videoURL");
+                Entry entry = new Entry(entryID, classID, mapName, moneyEarned, expEarned, videoURL);
+                return entry;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void addEntry(Entry newEntry) {
         try {
             PreparedStatement statement = conn.prepareStatement("insert into entries(entryID, classID, mapName, moneyEarned, expEarned, videoURL) values(?,?,?,?,?,?)");

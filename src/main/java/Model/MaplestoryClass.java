@@ -11,6 +11,6 @@ public class MaplestoryClass {
 
     @Override
     public String toString() {
-        return "(" + classID + ", " + "className" + ")";
+        return "(" + this.classID + ", " + this.className + ")";
     }
 }
