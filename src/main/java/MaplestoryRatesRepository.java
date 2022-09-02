@@ -1,4 +1,7 @@
 import Model.Entry;
+import Model.Map;
+import Service.EntryService;
+import Service.MapService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +9,9 @@ import java.util.Scanner;
 
 public class MaplestoryRatesRepository {
     public static void main(String[] args) {
+        MapService ms = new MapService();
+        EntryService es = new EntryService();
+
         final String[] classes = {"Adele", "Angelic Buster", "Aran", "Ark", "Battle Mage", "Beast Tamer", "Bishop",
                                   "Blaster", "Blaze Wizard", "Bowmaster", "Buccaneer", "Cadena", "Cannonneer", "Corsair",
                                   "Dark Knight", "Dawn WArrior", "Demon Avenger", "Demon Slayer", "Dual Blade", "Evan",
@@ -13,13 +19,12 @@ public class MaplestoryRatesRepository {
                                   "Luminous", "Fire Poison", "Ice Lightning", "Marksman", "Mechanic", "Mihile", "Mercedes",
                                   "Night Lord", "Night Walker", "Paladin", "Pathfinder", "Phantom", "Shade", "Shadower",
                                   "Thunder Breaker", "Wild Hunter", "Wind Archer", "Xenon", "Zero"};
-        List<String> maps = new ArrayList<>();
+        // List<Map> maps = ms.getAllMaps();
 
         // Command Line Menu
         // CRUD
         boolean inMenu = true;
         int menuSelection = 0;  // Default value, 0 = nothing selected
-        int entryID = 0;
         while(inMenu) {
             // Menu options
             System.out.println("Choose a menu option");
@@ -42,7 +47,9 @@ public class MaplestoryRatesRepository {
                     // Get map name and add to list of existing maps
                     System.out.println("Map?");
                     String mapInput = newEntryInput.nextLine();
-                    maps.add(mapInput);
+                    // maps.add(mapInput);
+                    Map newMap = new Map(Map.mapCount, mapInput);
+                    ms.addMap(Map.mapCount, mapInput);
 
                     // Get mesos earned
                     System.out.println("Total money earned?");
@@ -59,11 +66,9 @@ public class MaplestoryRatesRepository {
                     String videoInput = newEntryInput.nextLine();
 
                     // Add entry to table
-                    Entry newEntry = new Entry(entryID, classInput, mapInput, money, exp, videoInput);
-
+                    es.addEntry(Entry.entryCount, classInput, mapInput, money, exp, videoInput);
 
                     newEntryInput.close();  // close scanner
-                    entryID++;
                     break;
                 case 2: // Select filter
                     System.out.println("View by\n1) Class\n2) Map");
@@ -96,6 +101,8 @@ public class MaplestoryRatesRepository {
                             break;
                         case 2:
                             // Display current maps in database
+                            List<Map> maps = ms.getAllMaps();
+
                             for (int i = 0; i < maps.size(); i++) {
                                 System.out.format("%d) %s\n", i, maps.get(i));
                             }

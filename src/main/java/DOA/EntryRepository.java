@@ -113,7 +113,7 @@ public class EntryRepository {
     public void addEntry(Entry newEntry) {
         try {
             PreparedStatement statement = conn.prepareStatement("insert into entries(entryID, classID, mapName, moneyEarned, expEarned, videoURL) values(?,?,?,?,?,?)");
-            statement.setInt(1, newEntry.getEntryID());
+            statement.setInt(1, Entry.entryCount);
             statement.setInt(2, newEntry.getClassID());
             statement.setString(3, newEntry.getMapName());
             statement.setInt(4, newEntry.getMoney());

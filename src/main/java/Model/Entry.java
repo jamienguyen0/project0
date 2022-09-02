@@ -1,6 +1,7 @@
 package Model;// Represents an entry in the database
 
 public class Entry {
+    public static int entryCount = 0;
     private int entryID;
     private int classID;
     private String mapName;
@@ -9,20 +10,13 @@ public class Entry {
     private String videoLink;
 
     public Entry(int entryID, int classID, String mapName, int money, int exp, String videoLink) {
-        this.entryID = entryID;
+        entryCount++;   // Update static counter to use for entry id
+        this.entryID = Entry.entryCount;
         this.classID = classID;
         this.mapName = mapName;
         this.money = money;
         this.exp = exp;
         this.videoLink = videoLink;
-    }
-
-    public int getEntryID() {
-        return entryID;
-    }
-
-    public void setEntryID(int entryID) {
-        this.entryID = entryID;
     }
 
     public int getClassID() {
@@ -67,11 +61,6 @@ public class Entry {
 
     @Override
     public String toString() {
-        return  "EntryID: " + this.entryID + "\n" +
-                "Class: " + this.classID + "\n" +
-                "Map: " + this.mapName + "\n" +
-                "Money: " + this.money + "\n" +
-                "Exp: " + this.exp + "\n" +
-                "Video: " + this.videoLink + "\n";
+        return "(" + entryID + ", " + classID + ", " + mapName + ", " + money + ", " + exp + ", " + videoLink + ")";
     }
 }
