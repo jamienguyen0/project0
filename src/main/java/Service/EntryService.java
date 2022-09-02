@@ -9,8 +9,6 @@ import java.util.List;
 
 public class EntryService {
     EntryRepository er;
-    MaplestoryClassRepository mscr;
-    MapRepository mr;
 
     public EntryService() {
         er = new EntryRepository();
@@ -36,5 +34,4 @@ public class EntryService {
             er.addEntry(newEntry);
         }
     }
-
 }
