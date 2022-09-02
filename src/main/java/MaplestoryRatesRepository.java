@@ -43,38 +43,38 @@ public class MaplestoryRatesRepository {
                     // Get class name
                     System.out.println("Class?");
                     String classInput = newEntryInput.nextLine();
-                    newEntryInput.nextLine();
-                    System.out.println("classInput: " + classInput);
-                    mcs.addClass(classes.size(), classInput);
+                    // System.out.println("classInput: " + classInput);
+                    mcs.addClass(classes.size()+1, classInput);
 
                     // Get map name and add to list of existing maps
                     System.out.println("Map?");
                     String mapInput = newEntryInput.next();
                     newEntryInput.nextLine();
-                    System.out.println("mapInput: " + mapInput);
-                    ms.addMap(maps.size(), mapInput);
+                    // System.out.println("mapInput: " + mapInput);
+                    ms.addMap(maps.size()+1, mapInput);
 
                     // Get mesos earned
                     System.out.println("Total money earned?");
                     String moneyInput = newEntryInput.nextLine();
                     int money = Integer.parseInt(moneyInput);   // Convert to int
-                    System.out.println("moneyInput" + moneyInput);
+                    // System.out.println("moneyInput" + moneyInput);
 
                     // Get exp earned
                     System.out.println("Total exp earned?");
                     String expInput = newEntryInput.nextLine();
                     int exp = Integer.parseInt(expInput);   // Convert to int
-                    System.out.println("expInput: " + expInput);
+                    // System.out.println("expInput: " + expInput);
 
                     // Get link to video
                     System.out.println("Rotation video? (OPTIONAL)");
                     String videoInput = newEntryInput.nextLine();
-                    System.out.println("videoInput: " + videoInput);
+                    // System.out.println("videoInput: " + videoInput);
 
                     // Add entry to table
-                    es.addEntry(entries.size(), classInput, mapInput, money, exp, videoInput);
+                    es.addEntry(entries.size()+1, classInput, mapInput, money, exp, videoInput);
 
                     // Update list of classes and maps
+                    entries = es.getAllEntries();
                     classes = mcs.getAllClasses();
                     maps = ms.getAllMaps();
 
@@ -86,7 +86,6 @@ public class MaplestoryRatesRepository {
                     int filter = filterInput.nextInt();
                     filterInput.nextLine();
 
-                    // filterInput.close();
                     // 1 = Filter by CLASS
                     // 2 = Filter by MAP
                     switch(filter) {
