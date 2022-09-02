@@ -9,8 +9,16 @@ public class MaplestoryClass {
         this.className = className;
     }
 
+    public int getClassID() {
+        return classID;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
     @Override
     public String toString() {
-        return "(" + this.classID + ", " + this.className + ")";
+        return this.className;
     }
 }

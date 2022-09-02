@@ -1,17 +1,15 @@
 package Model;// Represents an entry in the database
 
 public class Entry {
-    public static int entryCount = 0;
     private int entryID;
-    private int classID;
+    private String classID;
     private String mapName;
     private int money;
     private int exp;
     private String videoLink;
 
-    public Entry(int entryID, int classID, String mapName, int money, int exp, String videoLink) {
-        entryCount++;   // Update static counter to use for entry id
-        this.entryID = Entry.entryCount;
+    public Entry(int entryID, String classID, String mapName, int money, int exp, String videoLink) {
+        this.entryID = entryID;
         this.classID = classID;
         this.mapName = mapName;
         this.money = money;
@@ -19,20 +17,20 @@ public class Entry {
         this.videoLink = videoLink;
     }
 
-    public int getClassID() {
+    public int getEntryID() {
+        return entryID;
+    }
+
+    public String getClassName() {
         return classID;
     }
 
-    public void setClassID(int classID) {
+    public void setClassName(String className) {
         this.classID = classID;
     }
 
     public String getMapName() {
         return mapName;
-    }
-
-    public void setMapName(String mapName) {
-        this.mapName = mapName;
     }
 
     public int getMoney() {

@@ -10,8 +10,11 @@ import java.util.List;
 public class EntryRepository {
     Connection conn;
 
+    MaplestoryClassRepository mcr;
+
     public EntryRepository() {
-        Connection conn = ConnectionUtil.getConnection();
+        conn = ConnectionUtil.getConnection();
+        mcr = new MaplestoryClassRepository();
     }
 
     public List<Entry> getAllEntries() {
@@ -24,11 +27,12 @@ public class EntryRepository {
             while (rs.next()) {
                 int entryID = rs.getInt("entryID");
                 int classID = rs.getInt("classID");
+                String className = mcr.getClassNameFromID(classID);
                 String mapName = rs.getString("mapName");
                 int moneyEarned = rs.getInt("moneyEarned");
                 int expEarned = rs.getInt("expEarned");
                 String videoURL = rs.getString("videoURL");
-                Entry newEntry = new Entry(entryID, classID, mapName, moneyEarned, expEarned, videoURL);
+                Entry newEntry = new Entry(entryID, className, mapName, moneyEarned, expEarned, videoURL);
                 allEntries.add(newEntry);
             }
         } catch (SQLException e) {
@@ -48,11 +52,12 @@ public class EntryRepository {
 
             while (rs.next()) {
                 int entryID = rs.getInt("entryID");
+                String className = mcr.getClassNameFromID(classID);
                 String mapName = rs.getString("mapName");
                 int moneyEarned = rs.getInt("moneyEarned");
                 int expEarned = rs.getInt("expEarned");
                 String videoURL = rs.getString("videoURL");
-                Entry newEntry = new Entry(entryID, classID, mapName, moneyEarned, expEarned, videoURL);
+                Entry newEntry = new Entry(entryID, className, mapName, moneyEarned, expEarned, videoURL);
                 entries.add(newEntry);
             }
 
@@ -74,11 +79,12 @@ public class EntryRepository {
             while (rs.next()) {
                 int entryID = rs.getInt("entryID");
                 int classID = rs.getInt("classID");
+                String className = mcr.getClassNameFromID(classID);
                 String mapName = rs.getString("mapName");
                 int moneyEarned = rs.getInt("moneyEarned");
                 int expEarned = rs.getInt("expEarned");
                 String videoURL = rs.getString("videoURL");
-                Entry newEntry = new Entry(entryID, classID, mapName, moneyEarned, expEarned, videoURL);
+                Entry newEntry = new Entry(entryID, className, mapName, moneyEarned, expEarned, videoURL);
                 entries.add(newEntry);
             }
         } catch (SQLException e) {
@@ -97,11 +103,12 @@ public class EntryRepository {
             while (rs.next()) {
                 int entryID = rs.getInt("entryID");
                 int classID = rs.getInt("classID");
+                String className = mcr.getClassNameFromID(classID);
                 String mapName = rs.getString("mapName");
                 int moneyEarned = rs.getInt("moneyEarned");
                 int expEarned = rs.getInt("expEarned");
                 String videoURL = rs.getString("videoURL");
-                Entry entry = new Entry(entryID, classID, mapName, moneyEarned, expEarned, videoURL);
+                Entry entry = new Entry(entryID, className, mapName, moneyEarned, expEarned, videoURL);
                 return entry;
             }
         } catch (SQLException e) {
@@ -113,8 +120,8 @@ public class EntryRepository {
     public void addEntry(Entry newEntry) {
         try {
             PreparedStatement statement = conn.prepareStatement("insert into entries(entryID, classID, mapName, moneyEarned, expEarned, videoURL) values(?,?,?,?,?,?)");
-            statement.setInt(1, Entry.entryCount);
-            statement.setInt(2, newEntry.getClassID());
+            statement.setInt(1, newEntry.getEntryID());
+            statement.setInt(2, mcr.getClassIDFromName(newEntry.getClassName()));
             statement.setString(3, newEntry.getMapName());
             statement.setInt(4, newEntry.getMoney());
             statement.setInt(5, newEntry.getExp());

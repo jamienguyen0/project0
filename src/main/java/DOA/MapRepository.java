@@ -23,7 +23,6 @@ public class MapRepository {
                 Map newMap = new Map(mapID, mapName);
                 maps.add(newMap);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -69,7 +68,7 @@ public class MapRepository {
     public void addMap(Map m) {
         try {
             PreparedStatement statement = conn.prepareStatement("insert into maps(mapID, mapName) values(?,?)");
-            statement.setInt(1, Map.mapCount);
+            statement.setInt(1, m.getMapID());
             statement.setString(2, m.getMapName());
             statement.executeUpdate();
         } catch (SQLException e) {
