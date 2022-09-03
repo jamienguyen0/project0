@@ -83,6 +83,27 @@ public class MaplestoryClassRepository {
 
         return null;
     }
+
+    public MaplestoryClass getClassByName(String name) {
+        try {
+            // Case-insensitive query for class names
+            PreparedStatement statement = conn.prepareStatement("Select * from msclasses where LOWER(className) = ?");
+            statement.setString(1, name);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                int classID = rs.getInt("classID");
+                String className = rs.getString("className");
+                MaplestoryClass newClass = new MaplestoryClass(classID, className);
+                return newClass;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public void addClass(MaplestoryClass mc) {
         try {
             PreparedStatement statement = conn.prepareStatement("insert into msclasses(classID, className) values(?,?)");
