@@ -65,6 +65,25 @@ public class MapRepository {
         return null;
     }
 
+    public Map getMapByName(String name) {
+        try {
+            PreparedStatement statement = conn.prepareStatement("Select * from maps where mapName = ?");
+            statement.setString(1, name);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                int mapID = rs.getInt("mapID");
+                String mapName = rs.getString("mapName");
+                Map map = new Map(mapID, mapName);
+                return map;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public void addMap(Map m) {
         try {
             PreparedStatement statement = conn.prepareStatement("insert into maps(mapID, mapName) values(?,?)");

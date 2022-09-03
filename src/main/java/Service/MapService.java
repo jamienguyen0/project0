@@ -25,7 +25,12 @@ public class MapService {
     }
 
     public void addMap(int mapID, String mapName) {
-        Map map = mr.getMapByID(mapID);
+        /* ID's should be unique so looking up a class by name rather than ID should eliminate duplicates
+         * In a real world setting, this wouldn't completely eliminate all duplicate names because
+         * while there are abbreviations that are generally agreed upon, some people just make up their own anyway.
+         */
+        // Map map = mr.getMapByID(mapID);
+        Map map = mr.getMapByName(mapName);
 
         if (map == null) {
             Map newMap = new Map(mapID, mapName);
