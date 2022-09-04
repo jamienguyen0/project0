@@ -65,7 +65,7 @@ public class MaplestoryRatesRepository {
                     int exp = Integer.parseInt(expInput);   // Convert to int
 
                     // Get link to video
-                    System.out.println("Rotation video? (OPTIONAL)");
+                    System.out.println("Video? (OPTIONAL)");
                     String videoInput = input.nextLine();
 
                     // Add entry to table
@@ -84,7 +84,7 @@ public class MaplestoryRatesRepository {
                     }
 
                     // Get the id of entry user is trying to delete
-                    System.out.println("ID of entry");
+                    System.out.println("ID of entry to delete");
                     int id = input.nextInt();
 
                     // Delete the entry
@@ -101,6 +101,12 @@ public class MaplestoryRatesRepository {
                     // 2 = Filter by MAP
                     switch(filter) {
                         case 1:
+                            // Check if there are any classes in the database to view
+                            if (classes.size() == 0) {
+                                System.out.println("There are currently no entries to view\n");
+                                break;
+                            }
+
                             // Display all classes
                             for (int i = 0; i < classes.size(); i++) {
                                 if (i > 0 && i % 4 == 0) {
@@ -110,12 +116,18 @@ public class MaplestoryRatesRepository {
                             }
                             System.out.println();   // New line for formatting
 
-                            // 0-48
+                            System.out.println("Enter class id to view entries");
                             int currClass = input.nextInt();
                             input.nextLine();
 
-                            // Database query to display all Model.Entry's associated with selected class
+                            // Database query to display all entries associated with selected class
                             List<Entry> allEntriesWithClassID = es.getAllEntriesByClassID(currClass);
+
+                            if (allEntriesWithClassID.size() == 0) {    // Check if there are entries to display
+                                System.out.println("There are no entries associated with this class\n");
+                                break;
+                            }
+
                             for (int i = 0; i < allEntriesWithClassID.size(); i++) {
                                 System.out.println(allEntriesWithClassID.get(i));
                             }
@@ -123,6 +135,12 @@ public class MaplestoryRatesRepository {
 
                             break;
                         case 2:
+                            // Check if there are any maps in the database to view
+                            if (maps.size() == 0) {
+                                System.out.println("There are currently no entries to view\n");
+                                break;
+                            }
+
                             // Display current maps in database
                             for (int i = 0; i < maps.size(); i++) {
                                 System.out.format("%d) %s\n", i, maps.get(i));
@@ -134,6 +152,12 @@ public class MaplestoryRatesRepository {
 
                             // Database query to display all Model.Entry's associated with selected map
                             List<Entry> allEntriesWithMapID = es.getAllEntriesByMapID(currMap);
+
+                            if (allEntriesWithMapID.size() == 0) {  // Check if there are entries to display
+                                System.out.println("There are no entries associated with this map\n");
+                                break;
+                            }
+
                             for (int i = 0; i < allEntriesWithMapID.size(); i++) {
                                 System.out.println(allEntriesWithMapID.get(i));
                             }
