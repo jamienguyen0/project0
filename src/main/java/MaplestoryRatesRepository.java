@@ -23,6 +23,7 @@ public class MaplestoryRatesRepository {
         // CRUD
         boolean inMenu = true;
         int menuSelection = 0;  // Default value, 0 = nothing selected
+        Scanner input = new Scanner(System.in);
         while(inMenu) {
             // Menu options
             System.out.println("Choose a menu option");
@@ -30,45 +31,36 @@ public class MaplestoryRatesRepository {
             System.out.println("2) View");
             System.out.println("3) Exit");
 
-            Scanner input = new Scanner(System.in);
+            // Scanner input = new Scanner(System.in);
             menuSelection = input.nextInt();
-            // String menuInput = input.nextLine();
-            // menuSelection = Integer.parseInt(menuInput);
-            System.out.println("menuSelection: " + menuSelection);
-            // input.close();
+            input.nextLine();
+
             switch(menuSelection) {
                 case 1: // Add a new entry
-                    Scanner newEntryInput = new Scanner(System.in);
-
                     // Get class name
                     System.out.println("Class?");
-                    String classInput = newEntryInput.nextLine();
-                    // System.out.println("classInput: " + classInput);
+                    String classInput = input.nextLine();
                     mcs.addClass(classes.size()+1, classInput);
 
                     // Get map name and add to list of existing maps
                     System.out.println("Map?");
-                    String mapInput = newEntryInput.next();
-                    newEntryInput.nextLine();
-                    // System.out.println("mapInput: " + mapInput);
+                    String mapInput = input.nextLine();
                     ms.addMap(maps.size()+1, mapInput);
 
                     // Get mesos earned
+                    // -2,000,000,000 <= mesosEarned <= 2,000,000,000
                     System.out.println("Total money earned?");
-                    String moneyInput = newEntryInput.nextLine();
+                    String moneyInput = input.nextLine();
                     int money = Integer.parseInt(moneyInput);   // Convert to int
-                    // System.out.println("moneyInput" + moneyInput);
 
                     // Get exp earned
                     System.out.println("Total exp earned?");
-                    String expInput = newEntryInput.nextLine();
+                    String expInput = input.nextLine();
                     int exp = Integer.parseInt(expInput);   // Convert to int
-                    // System.out.println("expInput: " + expInput);
 
                     // Get link to video
                     System.out.println("Rotation video? (OPTIONAL)");
-                    String videoInput = newEntryInput.nextLine();
-                    // System.out.println("videoInput: " + videoInput);
+                    String videoInput = input.nextLine();
 
                     // Add entry to table
                     es.addEntry(entries.size()+1, classInput, mapInput, money, exp, videoInput);
@@ -82,9 +74,8 @@ public class MaplestoryRatesRepository {
                 case 2: // Select filter
                     System.out.println("View by\n1) Class\n2) Map");
 
-                    Scanner filterInput = new Scanner(System.in);
-                    int filter = filterInput.nextInt();
-                    filterInput.nextLine();
+                    int filter = input.nextInt();
+                    input.nextLine();
 
                     // 1 = Filter by CLASS
                     // 2 = Filter by MAP
@@ -100,13 +91,11 @@ public class MaplestoryRatesRepository {
                             System.out.println();   // New line for formatting
 
                             // 0-48
-                            Scanner classSelection = new Scanner(System.in);
-                            String currClass = classSelection.nextLine();
-                            System.out.println("currClass: " + currClass);
-                            int currClassID = Integer.parseInt(currClass);
+                            int currClass = input.nextInt();
+                            input.nextLine();
 
                             // Database query to display all Model.Entry's associated with selected class
-                            List<Entry> allEntriesWithClassID = es.getAllEntriesByClassID(currClassID);
+                            List<Entry> allEntriesWithClassID = es.getAllEntriesByClassID(currClass);
                             for (int i = 0; i < allEntriesWithClassID.size(); i++) {
                                 System.out.println(allEntriesWithClassID.get(i));
                             }
@@ -120,10 +109,8 @@ public class MaplestoryRatesRepository {
                             }
 
                             // Get Input
-                            Scanner mapSelection = new Scanner(System.in);
-                            int currMap = mapSelection.nextInt();
-                            mapSelection.nextLine();
-                            System.out.println("currMap: " + currMap);
+                            int currMap = input.nextInt();
+                            input.nextLine();
 
                             // Database query to display all Model.Entry's associated with selected map
                             List<Entry> allEntriesWithMapID = es.getAllEntriesByMapID(currMap);
