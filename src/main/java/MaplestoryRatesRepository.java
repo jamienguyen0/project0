@@ -26,7 +26,7 @@ public class MaplestoryRatesRepository {
         Scanner input = new Scanner(System.in);
         while(inMenu) {
             // Menu options
-            System.out.println("Choose a menu option");
+            System.out.println("Choose a menu option:");
             System.out.println("1) Add");
             System.out.println("2) View");
             System.out.println("3) Exit");
@@ -37,15 +37,20 @@ public class MaplestoryRatesRepository {
 
             switch(menuSelection) {
                 case 1: // Add a new entry
+                    // New entry id
+                    int entryID = entries.size() + 1;
+
                     // Get class name
                     System.out.println("Class?");
                     String classInput = input.nextLine();
-                    mcs.addClass(classes.size()+1, classInput);
+                    int classID = classes.size() + 1;
+                    mcs.addClass(classID, classInput);
 
                     // Get map name and add to list of existing maps
                     System.out.println("Map?");
                     String mapInput = input.nextLine();
-                    ms.addMap(maps.size()+1, mapInput);
+                    int mapID = maps.size() + 1;
+                    ms.addMap(mapID, mapInput);
 
                     // Get mesos earned
                     // -2,000,000,000 <= mesosEarned <= 2,000,000,000
@@ -63,7 +68,7 @@ public class MaplestoryRatesRepository {
                     String videoInput = input.nextLine();
 
                     // Add entry to table
-                    es.addEntry(entries.size()+1, classInput, mapInput, money, exp, videoInput);
+                    es.addEntry(entryID, classID, mapID, money, exp, videoInput);
 
                     // Update list of classes and maps
                     entries = es.getAllEntries();

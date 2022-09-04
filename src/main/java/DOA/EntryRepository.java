@@ -27,12 +27,13 @@ public class EntryRepository {
             while (rs.next()) {
                 int entryID = rs.getInt("entryID");
                 int classID = rs.getInt("classID");
-                String className = mcr.getClassNameFromID(classID);
-                String mapName = rs.getString("mapName");
+                // String className = mcr.getClassNameFromID(classID);
+                // String mapName = rs.getString("mapName");
+                int mapID = rs.getInt("mapID");
                 int moneyEarned = rs.getInt("moneyEarned");
                 int expEarned = rs.getInt("expEarned");
                 String videoURL = rs.getString("videoURL");
-                Entry newEntry = new Entry(entryID, className, mapName, moneyEarned, expEarned, videoURL);
+                Entry newEntry = new Entry(entryID, classID, mapID, moneyEarned, expEarned, videoURL);
                 allEntries.add(newEntry);
             }
         } catch (SQLException e) {
@@ -52,12 +53,13 @@ public class EntryRepository {
 
             while (rs.next()) {
                 int entryID = rs.getInt("entryID");
-                String className = mcr.getClassNameFromID(classID);
-                String mapName = rs.getString("mapName");
+                // String className = mcr.getClassNameFromID(classID);
+                // String mapName = rs.getString("mapName");
+                int mapID = rs.getInt("mapID");
                 int moneyEarned = rs.getInt("moneyEarned");
                 int expEarned = rs.getInt("expEarned");
                 String videoURL = rs.getString("videoURL");
-                Entry newEntry = new Entry(entryID, className, mapName, moneyEarned, expEarned, videoURL);
+                Entry newEntry = new Entry(entryID, classID, mapID, moneyEarned, expEarned, videoURL);
                 entries.add(newEntry);
             }
 
@@ -79,12 +81,12 @@ public class EntryRepository {
             while (rs.next()) {
                 int entryID = rs.getInt("entryID");
                 int classID = rs.getInt("classID");
-                String className = mcr.getClassNameFromID(classID);
-                String mapName = rs.getString("mapName");
+                // String className = mcr.getClassNameFromID(classID);
+                // String mapName = rs.getString("mapName");
                 int moneyEarned = rs.getInt("moneyEarned");
                 int expEarned = rs.getInt("expEarned");
                 String videoURL = rs.getString("videoURL");
-                Entry newEntry = new Entry(entryID, className, mapName, moneyEarned, expEarned, videoURL);
+                Entry newEntry = new Entry(entryID, classID, mapID, moneyEarned, expEarned, videoURL);
                 entries.add(newEntry);
             }
         } catch (SQLException e) {
@@ -101,14 +103,15 @@ public class EntryRepository {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
-                int entryID = rs.getInt("entryID");
+                // int entryID = rs.getInt("entryID");
                 int classID = rs.getInt("classID");
-                String className = mcr.getClassNameFromID(classID);
-                String mapName = rs.getString("mapName");
+                // String className = mcr.getClassNameFromID(classID);
+                // String mapName = rs.getString("mapName");
+                int mapID = rs.getInt("mapID");
                 int moneyEarned = rs.getInt("moneyEarned");
                 int expEarned = rs.getInt("expEarned");
                 String videoURL = rs.getString("videoURL");
-                Entry entry = new Entry(entryID, className, mapName, moneyEarned, expEarned, videoURL);
+                Entry entry = new Entry(id, classID, mapID, moneyEarned, expEarned, videoURL);
                 return entry;
             }
         } catch (SQLException e) {
@@ -119,10 +122,10 @@ public class EntryRepository {
 
     public void addEntry(Entry newEntry) {
         try {
-            PreparedStatement statement = conn.prepareStatement("insert into entries(entryID, classID, mapName, moneyEarned, expEarned, videoURL) values(?,?,?,?,?,?)");
+            PreparedStatement statement = conn.prepareStatement("insert into entries(entryID, classID, mapID, moneyEarned, expEarned, videoURL) values(?,?,?,?,?,?)");
             statement.setInt(1, newEntry.getEntryID());
-            statement.setInt(2, mcr.getClassIDFromName(newEntry.getClassName()));
-            statement.setString(3, newEntry.getMapName());
+            statement.setInt(2, newEntry.getClassID());
+            statement.setInt(3, newEntry.getMapID());
             statement.setInt(4, newEntry.getMoney());
             statement.setInt(5, newEntry.getExp());
             statement.setString(6, newEntry.getVideoLink());

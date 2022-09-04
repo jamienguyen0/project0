@@ -26,11 +26,11 @@ public class EntryService {
         return er.getAllEntriesByMapID(id);
     }
 
-    public void addEntry(int entryID, String className, String mapName, int moneyEarned, int expEarned, String url) {
+    public void addEntry(int entryID, int classID, int mapID, int moneyEarned, int expEarned, String url) {
         Entry entry = er.getEntryByID(entryID);
 
         if (entry == null) {
-            Entry newEntry = new Entry(entryID, className, mapName, moneyEarned, expEarned, url);
+            Entry newEntry = new Entry(entryID, classID, mapID, moneyEarned, expEarned, url);
             er.addEntry(newEntry);
         }
     }
