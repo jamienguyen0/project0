@@ -29,9 +29,19 @@ public class EntryService {
     public void addEntry(int entryID, int classID, int mapID, int moneyEarned, int expEarned, String url) {
         Entry entry = er.getEntryByID(entryID);
 
+        // Check if already exists, add if it doesn't
         if (entry == null) {
             Entry newEntry = new Entry(entryID, classID, mapID, moneyEarned, expEarned, url);
             er.addEntry(newEntry);
+        }
+    }
+
+    public void deleteEntry(int entryID) {
+        Entry entry = er.getEntryByID(entryID);
+
+        // Check if entry exists before deleting, delete if it does
+        if (entry != null) {
+            er.deleteEntry(entryID);
         }
     }
 }

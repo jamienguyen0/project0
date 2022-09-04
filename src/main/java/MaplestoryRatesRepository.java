@@ -28,8 +28,9 @@ public class MaplestoryRatesRepository {
             // Menu options
             System.out.println("Choose a menu option:");
             System.out.println("1) Add");
-            System.out.println("2) View");
-            System.out.println("3) Exit");
+            System.out.println("2) Delete");
+            System.out.println("3) View");
+            System.out.println("4) Exit");
 
             // Scanner input = new Scanner(System.in);
             menuSelection = input.nextInt();
@@ -54,12 +55,12 @@ public class MaplestoryRatesRepository {
 
                     // Get mesos earned
                     // -2,000,000,000 <= mesosEarned <= 2,000,000,000
-                    System.out.println("Total money earned?");
+                    System.out.println("Total money earned? (0 - 2,000,000,000)");
                     String moneyInput = input.nextLine();
                     int money = Integer.parseInt(moneyInput);   // Convert to int
 
                     // Get exp earned
-                    System.out.println("Total exp earned?");
+                    System.out.println("Total exp earned? (Percentage)");
                     String expInput = input.nextLine();
                     int exp = Integer.parseInt(expInput);   // Convert to int
 
@@ -76,7 +77,21 @@ public class MaplestoryRatesRepository {
                     maps = ms.getAllMaps();
 
                     break;
-                case 2: // Select filter
+                case 2: // Delete an existing entry
+                    // Display currently existing entries for user to select
+                    for(int i = 0; i < entries.size(); i++) {
+                        System.out.println(entries.get(i));
+                    }
+
+                    // Get the id of entry user is trying to delete
+                    System.out.println("ID of entry");
+                    int id = input.nextInt();
+
+                    // Delete the entry
+                    es.deleteEntry(id);
+
+                    break;
+                case 3: // Select filter
                     System.out.println("View by\n1) Class\n2) Map");
 
                     int filter = input.nextInt();
@@ -131,7 +146,7 @@ public class MaplestoryRatesRepository {
                     }
 
                     break;
-                case 3: // Exit
+                case 4: // Exit
                     System.out.println("Exiting program...");
                     inMenu = false;
                     break;

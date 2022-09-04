@@ -27,8 +27,6 @@ public class EntryRepository {
             while (rs.next()) {
                 int entryID = rs.getInt("entryID");
                 int classID = rs.getInt("classID");
-                // String className = mcr.getClassNameFromID(classID);
-                // String mapName = rs.getString("mapName");
                 int mapID = rs.getInt("mapID");
                 int moneyEarned = rs.getInt("moneyEarned");
                 int expEarned = rs.getInt("expEarned");
@@ -53,8 +51,6 @@ public class EntryRepository {
 
             while (rs.next()) {
                 int entryID = rs.getInt("entryID");
-                // String className = mcr.getClassNameFromID(classID);
-                // String mapName = rs.getString("mapName");
                 int mapID = rs.getInt("mapID");
                 int moneyEarned = rs.getInt("moneyEarned");
                 int expEarned = rs.getInt("expEarned");
@@ -81,8 +77,6 @@ public class EntryRepository {
             while (rs.next()) {
                 int entryID = rs.getInt("entryID");
                 int classID = rs.getInt("classID");
-                // String className = mcr.getClassNameFromID(classID);
-                // String mapName = rs.getString("mapName");
                 int moneyEarned = rs.getInt("moneyEarned");
                 int expEarned = rs.getInt("expEarned");
                 String videoURL = rs.getString("videoURL");
@@ -105,8 +99,6 @@ public class EntryRepository {
             while (rs.next()) {
                 // int entryID = rs.getInt("entryID");
                 int classID = rs.getInt("classID");
-                // String className = mcr.getClassNameFromID(classID);
-                // String mapName = rs.getString("mapName");
                 int mapID = rs.getInt("mapID");
                 int moneyEarned = rs.getInt("moneyEarned");
                 int expEarned = rs.getInt("expEarned");
@@ -129,6 +121,16 @@ public class EntryRepository {
             statement.setInt(4, newEntry.getMoney());
             statement.setInt(5, newEntry.getExp());
             statement.setString(6, newEntry.getVideoLink());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteEntry(int id) {
+        try {
+            PreparedStatement statement = conn.prepareStatement("delete from entries where entryID = ?");
+            statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
