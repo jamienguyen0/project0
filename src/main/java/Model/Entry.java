@@ -8,6 +8,9 @@ public class Entry {
     private int exp;
     private String videoLink;
 
+    public Entry() {
+    }
+
     public Entry(int entryID, int classID, int mapID, int money, int exp, String videoLink) {
         this.entryID = entryID;
         this.classID = classID;

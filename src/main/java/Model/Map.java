@@ -4,6 +4,9 @@ public class Map {
     private int mapID;
     private String mapName;
 
+    public Map() {
+    }
+
     public Map(int mapID, String mapName) {
         this.mapID = mapID;
         this.mapName = mapName;
